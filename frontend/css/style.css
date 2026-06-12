@@ -6,25 +6,29 @@
 
 body {
     font-family: Georgia, serif;
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background: #fafaf7;
     color: #2c2c2c;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 header {
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 0 20px;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 8px;
 }
 
 #today-date {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #666;
 }
 
@@ -38,28 +42,117 @@ header h1 {
     color: #a33;
 }
 
-section {
-    margin-bottom: 40px;
+/* --- Carousel --- */
+
+#carousel {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 8px;
+#carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+    flex: 1;
 }
 
-ul {
-    list-style: none;
+#carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    height: 100%;
 }
 
-li {
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-    line-height: 1.5;
+.card {
+    min-width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-li strong {
+.card-type {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.card-year {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    color: #444;
+}
+
+/* --- Navigation (arrows + dots) --- */
+
+#carousel-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+#prev-btn, #next-btn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+    cursor: pointer;
     color: #555;
-    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+#prev-btn:hover, #next-btn:hover {
+    background: #eee;
+}
+
+/* --- Dots --- */
+
+#dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dot.active {
+    background: #555;
+}
+
+/* --- Mobile --- */
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .card-year {
+        font-size: 2.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
 }

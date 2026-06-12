@@ -3,31 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History Repeats</title>
+    <title>On This Day</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header>
-        <h1>History Repeats</h1>
+        <h1>On This Day</h1>
         <p id="today-date"></p>
     </header>
 
     <main>
         <div id="loading">Loading today's history...</div>
         <div id="error" hidden></div>
-        <div id="content" hidden>
-            <section id="events-section">
-                <h2>Events</h2>
-                <ul id="events-list"></ul>
-            </section>
-            <section id="births-section">
-                <h2>Births</h2>
-                <ul id="births-list"></ul>
-            </section>
-            <section id="deaths-section">
-                <h2>Deaths</h2>
-                <ul id="deaths-list"></ul>
-            </section>
+
+        <div id="carousel" hidden>
+            <div id="carousel-viewport">
+                <div id="carousel-track"></div>
+            </div>
+
+            <nav id="carousel-nav">
+                <button id="prev-btn" aria-label="Previous">&larr;</button>
+                <div id="dots"></div>
+                <button id="next-btn" aria-label="Next">&rarr;</button>
+            </nav>
         </div>
     </main>
 
