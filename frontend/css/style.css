@@ -114,6 +114,29 @@ main {
     background: #eee;
 }
 
+/* --- Refresh button --- */
+
+#refresh-btn {
+    font-family: inherit;
+    font-size: 1rem;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 22px;
+    padding: 10px 24px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #555;
+}
+
+#refresh-btn:hover {
+    background: #eee;
+}
+
+#refresh-btn:disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
 /* --- Dots --- */
 
 #dots {

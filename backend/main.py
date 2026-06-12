@@ -58,23 +58,11 @@ def curate_facts(data):
                     "text": text,
                 })
 
-    # Group by century: year 1812 → century 19, year 450 → century 5
-    by_century = {}
-    for item in all_items:
-        century = (item["year"] // 100) + 1
-        if century not in by_century:
-            by_century[century] = []
-        by_century[century].append(item)
-
-    # Pick one random fact from each century
-    picks = []
-    for century in sorted(by_century.keys()):
-        picks.append(random.choice(by_century[century]))
-
-    # Cap at 7 facts, spread evenly if we have more than 7 centuries
-    if len(picks) > 7:
-        step = len(picks) / 7
-        picks = [picks[int(i * step)] for i in range(7)]
+    # Pick up to 7 distinct random facts from the whole pool so every
+    # refresh produces a visibly different set, then order them
+    # chronologically so the carousel reads as a timeline.
+    picks = random.sample(all_items, min(7, len(all_items)))
+    picks.sort(key=lambda item: item["year"])
 
     return picks
 
