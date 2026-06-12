@@ -21,6 +21,18 @@ app.add_middleware(
 WIKIPEDIA_API = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday"
 
 
+@app.get("/api/debug")
+async def debug():
+    today = date.today()
+    url = f"{WIKIPEDIA_API}/all/{today.month:02d}/{today.day:02d}"
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(url, headers={"User-Agent": "HistoryRepeats/1.0"})
+            return {"status": resp.status_code, "url": url}
+    except Exception as e:
+        return {"error": str(e), "url": url}
+
+
 @app.get("/api/events")
 async def get_events():
     today = date.today()
