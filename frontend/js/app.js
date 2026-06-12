@@ -6,6 +6,7 @@ const track = document.getElementById("carousel-track");
 const dotsEl = document.getElementById("dots");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
+const refreshBtn = document.getElementById("refresh-btn");
 
 let currentIndex = 0;
 let totalCards = 0;
@@ -42,6 +43,12 @@ function formatDate(month, day) {
 // --- Build the cards and dots ---
 
 function renderCards(facts) {
+    // Clear any previously rendered cards and dots, and reset position
+    track.innerHTML = "";
+    dotsEl.innerHTML = "";
+    currentIndex = 0;
+    track.style.transform = "translateX(0)";
+
     totalCards = facts.length;
 
     for (const fact of facts) {
@@ -97,6 +104,14 @@ nextBtn.addEventListener("click", function () {
     if (currentIndex < totalCards - 1) {
         goToCard(currentIndex + 1);
     }
+});
+
+refreshBtn.addEventListener("click", async function () {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = "Loading...";
+    await loadEvents();
+    refreshBtn.textContent = "More from this day";
+    refreshBtn.disabled = false;
 });
 
 // --- Touch swipe support for mobile ---
