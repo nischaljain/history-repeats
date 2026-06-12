@@ -112,6 +112,9 @@ main {
     cursor: pointer;
     color: #555;
     flex-shrink: 0;
+    /* Disable double-tap-to-zoom so rapid taps register as clicks,
+       not a zoom gesture. Pinch-to-zoom still works. */
+    touch-action: manipulation;
 }
 
 /* Only apply hover styling on devices with a real pointer, so the
@@ -134,6 +137,7 @@ main {
     margin-bottom: 10px;
     cursor: pointer;
     color: #555;
+    touch-action: manipulation;
 }
 
 @media (hover: hover) {
@@ -162,6 +166,7 @@ main {
     background: #ccc;
     cursor: pointer;
     padding: 0;
+    touch-action: manipulation;
 }
 
 .dot.active {
