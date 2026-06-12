@@ -1,7 +1,7 @@
 const loadingEl = document.getElementById("loading");
 const errorEl = document.getElementById("error");
 const carouselEl = document.getElementById("carousel");
-const dateEl = document.getElementById("today-date");
+let dateText = "";
 const track = document.getElementById("carousel-track");
 const dotsEl = document.getElementById("dots");
 const prevBtn = document.getElementById("prev-btn");
@@ -22,7 +22,7 @@ async function loadEvents() {
 
         const data = await response.json();
 
-        dateEl.textContent = formatDate(data.month, data.day);
+        dateText = formatDate(data.month, data.day);
         renderCards(data.facts);
 
         loadingEl.hidden = true;
@@ -48,7 +48,9 @@ function renderCards(facts) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML =
-            '<h2 class="card-year">' + fact.year + "</h2>" +
+            '<h1 class="card-title">On This Day</h1>' +
+            '<p class="card-date">' + dateText + "</p>" +
+            '<h2 class="card-year">Year ' + fact.year + "</h2>" +
             '<p class="card-text">' + fact.text + "</p>";
         track.appendChild(card);
     }
