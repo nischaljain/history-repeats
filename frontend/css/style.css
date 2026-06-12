@@ -15,6 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
 main {
@@ -53,6 +54,9 @@ main {
     display: flex;
     transition: transform 0.4s ease;
     height: 100%;
+    /* Let the browser handle vertical scrolling but reserve horizontal
+       gestures for our swipe handler, so swipes work repeatedly. */
+    touch-action: pan-y;
 }
 
 .card {
@@ -110,8 +114,12 @@ main {
     flex-shrink: 0;
 }
 
-#prev-btn:hover, #next-btn:hover {
-    background: #eee;
+/* Only apply hover styling on devices with a real pointer, so the
+   highlight doesn't "stick" after a tap on touch screens. */
+@media (hover: hover) {
+    #prev-btn:hover, #next-btn:hover {
+        background: #eee;
+    }
 }
 
 /* --- Refresh button --- */
@@ -128,8 +136,10 @@ main {
     color: #555;
 }
 
-#refresh-btn:hover {
-    background: #eee;
+@media (hover: hover) {
+    #refresh-btn:hover {
+        background: #eee;
+    }
 }
 
 #refresh-btn:disabled {
