@@ -1,10 +1,13 @@
 import random
 from datetime import date
+from pathlib import Path
 
 import httpx
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 app = FastAPI()
 
@@ -77,4 +80,4 @@ def curate_facts(data):
 
 
 # Serve frontend static files — must be last so it doesn't shadow API routes
-app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
