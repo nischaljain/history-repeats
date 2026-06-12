@@ -95,18 +95,21 @@ function updateDots() {
 }
 
 prevBtn.addEventListener("click", function () {
+    this.blur();
     if (currentIndex > 0) {
         goToCard(currentIndex - 1);
     }
 });
 
 nextBtn.addEventListener("click", function () {
+    this.blur();
     if (currentIndex < totalCards - 1) {
         goToCard(currentIndex + 1);
     }
 });
 
 refreshBtn.addEventListener("click", async function () {
+    this.blur();
     refreshBtn.disabled = true;
     refreshBtn.textContent = "Loading...";
     await loadEvents();
