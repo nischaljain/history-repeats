@@ -20,7 +20,7 @@ WIKIPEDIA_API = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday"
 @app.get("/api/events")
 async def get_events():
     today = date.today()
-    url = f"{WIKIPEDIA_API}/all/{today.month}/{today.day}"
+    url = f"{WIKIPEDIA_API}/all/{today.month:02d}/{today.day:02d}"
 
     async with httpx.AsyncClient() as client:
         resp = await client.get(url, headers={"User-Agent": "HistoryRepeats/1.0"})
