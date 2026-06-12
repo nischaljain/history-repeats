@@ -48,7 +48,6 @@ function renderCards(facts) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML =
-            '<span class="card-type">' + fact.type + "</span>" +
             '<h2 class="card-year">' + fact.year + "</h2>" +
             '<p class="card-text">' + fact.text + "</p>";
         track.appendChild(card);

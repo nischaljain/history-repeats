@@ -44,10 +44,15 @@ def curate_facts(data):
     for category in ("events", "births", "deaths"):
         for item in data.get(category, []):
             if "year" in item and "text" in item:
+                text = item["text"]
+                if category == "births":
+                    text = text + " is born."
+                elif category == "deaths":
+                    text = text + " dies."
+
                 all_items.append({
                     "year": item["year"],
-                    "text": item["text"],
-                    "type": category,
+                    "text": text,
                 })
 
     # Group by century: year 1812 → century 19, year 450 → century 5
